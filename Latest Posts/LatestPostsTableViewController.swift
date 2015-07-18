@@ -10,7 +10,7 @@ import UIKit
 
 class LatestPostsTableViewController: UITableViewController {
 
-    let latestPosts : String = "https://wlcdesigns.com/wp-json/posts/?filter[category_name]=tutorials"
+    let latestPosts : String = "<-- insert you json link here -->"
     var json : JSON = JSON.nullJSON
     
     
