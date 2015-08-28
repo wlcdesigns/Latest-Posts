@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fnb-Dr-Uas">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fnb-Dr-Uas">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -69,6 +69,7 @@
                                     <outlet property="postDate" destination="6eB-03-a7H" id="9AE-4q-VSX"/>
                                     <outlet property="postImage" destination="AaW-kN-oWi" id="8Hg-cP-ewx"/>
                                     <outlet property="postTitle" destination="9VK-1I-zem" id="Owl-5G-ggF"/>
+                                    <segue destination="Lpe-DH-vTX" kind="show" id="ifH-kc-Ahz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -82,6 +83,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wuv-J0-e1m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1415.5" y="273.5"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="362-uM-WPq">
+            <objects>
+                <viewController id="Lpe-DH-vTX" customClass="WebViewController" customModule="Latest_Posts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G1F-s5-0mM"/>
+                        <viewControllerLayoutGuide type="bottom" id="urH-Px-w7i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lSp-Wb-8TM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYr-40-oo1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OYr-40-oo1" firstAttribute="height" secondItem="lSp-Wb-8TM" secondAttribute="height" id="SYu-PJ-Pne"/>
+                            <constraint firstAttribute="centerX" secondItem="OYr-40-oo1" secondAttribute="centerX" id="T8e-5W-etE"/>
+                            <constraint firstAttribute="centerY" secondItem="OYr-40-oo1" secondAttribute="centerY" id="WPN-Y8-zyy"/>
+                            <constraint firstItem="OYr-40-oo1" firstAttribute="width" secondItem="lSp-Wb-8TM" secondAttribute="width" id="cS5-TV-l2q"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="OYr-40-oo1" id="eHa-aD-R6X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jgO-Ni-QuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2039.5" y="273.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1rH-qn-Btq">

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F3275141B90217F00144E9D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3275131B90217F00144E9D /* WebViewController.swift */; };
 		7F65036F1B59A6DD00C62A82 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65036E1B59A6DD00C62A82 /* SwiftyJSON.swift */; };
 		7F8193B21B57659B0011A2E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8193B11B57659B0011A2E8 /* AppDelegate.swift */; };
 		7F8193B71B57659B0011A2E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F8193B51B57659B0011A2E8 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F3275131B90217F00144E9D /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		7F65036E1B59A6DD00C62A82 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		7F8193AC1B57659B0011A2E8 /* Latest Posts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Latest Posts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F8193B01B57659B0011A2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				7F8193B51B57659B0011A2E8 /* Main.storyboard */,
 				7F8193D11B5770BD0011A2E8 /* LatestPostsTableViewController.swift */,
 				7F8193D31B5770DE0011A2E8 /* LatestPostsTableViewCell.swift */,
+				7F3275131B90217F00144E9D /* WebViewController.swift */,
 				7F8193B81B57659B0011A2E8 /* Images.xcassets */,
 				7F8193BA1B57659B0011A2E8 /* LaunchScreen.xib */,
 				7F65036E1B59A6DD00C62A82 /* SwiftyJSON.swift */,
@@ -221,6 +224,7 @@
 				7F8193B21B57659B0011A2E8 /* AppDelegate.swift in Sources */,
 				7F8193D21B5770BD0011A2E8 /* LatestPostsTableViewController.swift in Sources */,
 				7F8193D41B5770DE0011A2E8 /* LatestPostsTableViewCell.swift in Sources */,
+				7F3275141B90217F00144E9D /* WebViewController.swift in Sources */,
 				7F65036F1B59A6DD00C62A82 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

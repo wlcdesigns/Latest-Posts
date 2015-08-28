@@ -10,7 +10,7 @@ import UIKit
 
 class LatestPostsTableViewController: UITableViewController {
 
-    let latestPosts : String = "<-- insert you json link here -->"
+    let latestPosts : String = "<-- Link to your JSON feed here -->"
     var json : JSON = JSON.nullJSON
     
     
@@ -134,15 +134,23 @@ class LatestPostsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        
+        //Which view controller are we sending this to?
+        var postScene = segue.destinationViewController as! WebViewController;
+        
+        //pass the selected JSON to the "viewPost variable of the WebViewController Class
+        if let indexPath = self.tableView.indexPathForSelectedRow(){
+            let selected = self.json[indexPath.row]
+            postScene.viewPost = selected
+        }
+        
     }
-    */
+    
 
 }
 
