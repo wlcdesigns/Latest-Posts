@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import Alamofire
 
 class LatestPostsTableViewController: UITableViewController {
 
-    let latestPosts : String = "<-- Link to your JSON feed here -->"
-    var json : JSON = JSON.nullJSON
+    let latestPosts : String = "<-- your wp rest api link here -->"
+    
+    let parameters : [String:AnyObject] = [
+        "filter[category_name]" : "uncategorized",
+        "filter[posts_per_page]" : 5
+    ]
+    
+    var json : JSON = JSON.null
     
     
     override func viewDidLoad() {
@@ -19,7 +26,7 @@ class LatestPostsTableViewController: UITableViewController {
         
         getPosts(latestPosts)
         
-        var refreshControl = UIRefreshControl()
+        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: Selector("newNews"), forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl = refreshControl
     }
@@ -33,18 +40,20 @@ class LatestPostsTableViewController: UITableViewController {
 
     func getPosts(getposts : String)
     {
-        let mySession = NSURLSession.sharedSession()
-        let url: NSURL = NSURL(string: getposts)!
-        let networkTask = mySession.dataTaskWithURL(url, completionHandler : {data, response, error -> Void in
-            var err: NSError?
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                self.json = JSON(data: data)
-                self.tableView.reloadData()
-            })
-        })
-        
-        networkTask.resume()
+        Alamofire.request(.GET, getposts, parameters:parameters)
+            .responseJSON { request, response, result in
+                
+                switch result
+                {
+                    case .Success(let data):
+                    
+                        self.json = JSON(data)
+                        self.tableView.reloadData()
+                    
+                    case .Failure(let error):
+                        print("Request failed with error: \(error)")
+                }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,32 +77,49 @@ class LatestPostsTableViewController: UITableViewController {
                 return 1
         }
     }
+    
+    func populateFields(cell: LatestPostsTableViewCell, index: Int){
+        
+        //Make sure post title is a string
+        guard let title = self.json[index]["title"]["rendered"].string else{
+            cell.postTitle!.text = "Loading..."
+            return
+        }
+        
+        // An action must always proceed the guard conditional
+        cell.postTitle!.text = title
+        
+        //Make sure post date is a string
+        guard let date = self.json[index]["date"].string else{
+            cell.postDate!.text = "--"
+            return
+        }
+        
+        cell.postDate!.text = date
+        
+        /*
+         * Set up Featured Image
+         * Using guard, there's no need for nested if statements 
+         * to unwrap and check optionals
+         */
+        
+        guard let image = self.json[index]["featured_image_thumbnail_url"].string where
+        image != "null"
+            else{
+            
+            print("Image didn't load")
+            return
+        }
+    
+        ImageLoader.sharedLoader.imageForUrl(image, completionHandler:{(image: UIImage?, url: String) in
+            cell.postImage.image = image!
+        })
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! LatestPostsTableViewCell
 
-        // Get row index
-        var row = indexPath.row
-        
-        //Make sure post title is a string
-        if let title = self.json[row]["title"].string{
-            cell.postTitle!.text = title
-        }
-        
-        //Make sure post date is a string
-        if let date = self.json[row]["date"].string{
-            cell.postDate!.text = date
-        }
-
-        if let image = self.json[row]["featured_image"]["attachment_meta"]["sizes"]["medium"]["url"].string{
-            
-            if image != "null"{
-                
-                ImageLoader.sharedLoader.imageForUrl(image, completionHandler:{(image: UIImage?, url: String) in
-                    cell.postImage.image = image!
-                })
-            }
-        }
+        populateFields(cell, index: indexPath.row)
 
         return cell
     }
@@ -138,6 +164,14 @@ class LatestPostsTableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let singlePostVC : SinglePostViewController = storyboard!.instantiateViewControllerWithIdentifier("SinglePostViewController") as! SinglePostViewController
+        singlePostVC.json = self.json[indexPath.row]
+        self.navigationController?.pushViewController(singlePostVC, animated: true)
+        
+    }
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         //Which view controller are we sending this to?
@@ -150,51 +184,7 @@ class LatestPostsTableViewController: UITableViewController {
         }
         
     }
+*/
     
 
-}
-
-class ImageLoader {
-    
-    var cache = NSCache()
-    
-    class var sharedLoader : ImageLoader {
-        struct Static {
-            static let instance : ImageLoader = ImageLoader()
-        }
-        return Static.instance
-    }
-    
-    func imageForUrl(urlString: String, completionHandler:(image: UIImage?, url: String) -> ()) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {()in
-            var data: NSData? = self.cache.objectForKey(urlString) as? NSData
-            
-            if let goodData = data {
-                let image = UIImage(data: goodData)
-                dispatch_async(dispatch_get_main_queue(), {() in
-                    completionHandler(image: image, url: urlString)
-                })
-                return
-            }
-            
-            var downloadTask: NSURLSessionDataTask = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: urlString)!, completionHandler: {(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
-                if (error != nil) {
-                    completionHandler(image: nil, url: urlString)
-                    return
-                }
-                
-                if data != nil {
-                    let image = UIImage(data: data)
-                    self.cache.setObject(data, forKey: urlString)
-                    dispatch_async(dispatch_get_main_queue(), {() in
-                        completionHandler(image: image, url: urlString)
-                    })
-                    return
-                }
-                
-            })
-            downloadTask.resume()
-        })
-        
-    }
 }
