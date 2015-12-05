@@ -11,15 +11,14 @@ import Alamofire
 
 class LatestPostsTableViewController: UITableViewController {
 
-    let latestPosts : String = "<-- your wp rest api link here -->"
+    let latestPosts : String = "https://wlcdesigns.com/wp-json/wp/v2/posts/"
     
     let parameters : [String:AnyObject] = [
-        "filter[category_name]" : "uncategorized",
+        "filter[category_name]" : "tutorials",
         "filter[posts_per_page]" : 5
     ]
     
     var json : JSON = JSON.null
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,18 +40,16 @@ class LatestPostsTableViewController: UITableViewController {
     func getPosts(getposts : String)
     {
         Alamofire.request(.GET, getposts, parameters:parameters)
-            .responseJSON { request, response, result in
+            .responseJSON { response in
                 
-                switch result
-                {
-                    case .Success(let data):
-                    
-                        self.json = JSON(data)
-                        self.tableView.reloadData()
-                    
-                    case .Failure(let error):
-                        print("Request failed with error: \(error)")
+                guard let data = response.result.value else{
+                    print("Request failed with error")
+                    return
                 }
+                
+                self.json = JSON(data)
+                self.tableView.reloadData()
+                
         }
     }
     

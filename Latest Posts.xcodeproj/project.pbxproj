@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7F1121421BAB5DC800FC8B48 /* Essentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1121411BAB5DC800FC8B48 /* Essentials.swift */; };
-		7F18BE231BB09902006F5868 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F18BE221BB09902006F5868 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
-		7F6EE5061BB5CDBA00EB01D6 /* appStyles.css in Resources */ = {isa = PBXBuildFile; fileRef = 7F6EE5051BB5CDBA00EB01D6 /* appStyles.css */; settings = {ASSET_TAGS = (); }; };
+		7F18BE231BB09902006F5868 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F18BE221BB09902006F5868 /* Default-568h@2x.png */; };
+		7F6EE5061BB5CDBA00EB01D6 /* appStyles.css in Resources */ = {isa = PBXBuildFile; fileRef = 7F6EE5051BB5CDBA00EB01D6 /* appStyles.css */; };
 		7F8193B21B57659B0011A2E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8193B11B57659B0011A2E8 /* AppDelegate.swift */; };
 		7F8193B71B57659B0011A2E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F8193B51B57659B0011A2E8 /* Main.storyboard */; };
 		7F8193B91B57659B0011A2E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F8193B81B57659B0011A2E8 /* Images.xcassets */; };
@@ -19,9 +19,9 @@
 		7F8193D41B5770DE0011A2E8 /* LatestPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8193D31B5770DE0011A2E8 /* LatestPostsTableViewCell.swift */; };
 		7F8B1C491BAA710600EE94F9 /* SinglePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8B1C481BAA710600EE94F9 /* SinglePostViewController.swift */; };
 		7FCB6B5E1BB096480027BC95 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FCB6B5D1BB096480027BC95 /* SwiftyJSON.framework */; };
-		7FCB6B601BB0968F0027BC95 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCB6B5F1BB0968F0027BC95 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
-		A1B4CF76E4B0CA846CBDD6A4 /* Pods_Latest_Posts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5F43151CB663D502B33EDF5 /* Pods_Latest_Posts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A3A468BD1DED1623307CB253 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FA32F7510620E9529142B3 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7FCB6B601BB0968F0027BC95 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCB6B5F1BB0968F0027BC95 /* SwiftyJSON.swift */; };
+		A1B4CF76E4B0CA846CBDD6A4 /* Pods_Latest_Posts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5F43151CB663D502B33EDF5 /* Pods_Latest_Posts.framework */; };
+		A3A468BD1DED1623307CB253 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FA32F7510620E9529142B3 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

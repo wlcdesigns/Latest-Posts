@@ -6,4 +6,4 @@ target 'Latest Posts' do
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
-pod 'Alamofire', '~> 2.0'
+pod 'Alamofire', '~> 3.0'
